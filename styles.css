@@ -1,0 +1,84 @@
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  --color1: #0104FD;
+  --color2: #FF98FF;
+  --color3: #FF6827;
+  --color4: #00004E;
+  --color5: #FFFFFF;
+  --color: var(--color2);
+}
+body:before {
+  content: 'click to regenerate';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  color: #ccc;
+}
+body #wrap {
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background: #fff;
+}
+body .cellwrap {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: #fff;
+  overflow: hidden;
+  mix-blend-mode: hard-light;
+  box-shadow: 0 20px 20px -10px rgba(0, 0, 0, 0.25);
+}
+body .cell {
+  position: relative;
+  -webkit-filter: url(#squiggle);
+          filter: url(#squiggle);
+  z-index: 0;
+  mix-blend-mode: difference;
+}
+body .cell .inner {
+  content: '';
+  position: absolute;
+  width: calc(var(--size) * 5%);
+  height: calc(var(--size) * 5%);
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--angle)), color-stop(var(--color)), to(var(--color6)));
+  background: linear-gradient(var(--angle), var(--color), var(--color6));
+  border-radius: 100%;
+  z-index: -1;
+  top: calc(var(--size) * 5% / -2);
+  left: calc(var(--size) * 5% / -2);
+  opacity: var(--opacity);
+  -webkit-filter: brightness(calc(var(--opacity) + 1));
+          filter: brightness(calc(var(--opacity) + 1));
+  -webkit-transform: skewX(var(--skewX)) skewY(var(--skewY));
+          transform: skewX(var(--skewX)) skewY(var(--skewY));
+}
+body svg {
+  position: absolute;
+  z-index: 10;
+  width: calc(var(--size) * 1%);
+  height: calc(var(--size) * 1%);
+  -webkit-transform: translate(-50%, -50%) rotate(var(--rotate));
+          transform: translate(-50%, -50%) rotate(var(--rotate));
+  left: 50%;
+  top: 50%;
+  mix-blend-mode: exclusion;
+}
+body svg path {
+  fill: transparent;
+  stroke: var(--color);
+  stroke-width: calc(4px - (var(--size) * 0.0025px));
+  stroke-linecap: round;
+}
